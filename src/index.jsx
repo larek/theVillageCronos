@@ -61,7 +61,8 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
   }
 
   render(){
-    return(<div className='container'>
+    let display = this.state.currentProduct ? {display: 'block'} : {display: 'none'};
+    return(<div className='container' style={display}>
       <div className='row'>
         <div className='col-2'>
           <div className='row'>
@@ -77,12 +78,13 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
           <div className="card" id='mainProductView'>
             {this.state.mainImage ? <img className='card-img-top' src={this.state.mainImage} /> : false}
             <div className="mainProductView-description">
-              <h4 className="card-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</h4>
+              <div className="mainProductView-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</div>
+              <div className='mainProductView-color'>{this.state.currentProduct.color}</div>
               <div className='mainProductView-price'>
                 <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
                 <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
               </div>
-              <a href="#" className="btn btn-primary">Купить</a>
+              <a href={this.state.currentProduct.link} target='_blank' className="btn btn-primary">Купить</a>
             </div>
           </div>
         </div>

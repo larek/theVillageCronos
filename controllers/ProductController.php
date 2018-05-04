@@ -130,6 +130,7 @@ class ProductController extends Controller
           'price' => number_format($item->price, 0, ',', ' ').' руб',
           'pricediscount' => $item->pricediscount == null ? null : number_format($item->pricediscount, 0, ',', ' '). ' руб',
           'discount' => $item->discount,
+          'link' => $item->link,
           'img1' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/1.jpg') ? '/images/'.$item->slug.'/1.jpg' : 'https://placehold.it/300x150',
           'img2' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/2.jpg') ? '/images/'.$item->slug.'/2.jpg' : 'https://placehold.it/300x150',
           'img3' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3.jpg') ? '/images/'.$item->slug.'/3.jpg' : 'https://placehold.it/300x150',

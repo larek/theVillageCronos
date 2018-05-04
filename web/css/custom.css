@@ -39,3 +39,15 @@ body{
     font-size: 1.3em;
     padding-bottom: 10px;
 }
+
+.mainProductView-color {
+    font-size: 0.9em;
+}
+
+.mainProductView-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    font-size: 1.5em;
+}
