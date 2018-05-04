@@ -72,6 +72,12 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
             <div className='col-12 mt-3'>
               {this.state.img4 ? <img className='img-fluid' onClick={this.setMainImage.bind(this)} src={this.state.img4} /> : false}
             </div>
+            <div className='col-12 mt-3'>
+              <div className='uploadBtn'>
+                <img src='/images/upload-btn.svg' />
+                <span>Загрузить фото</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-5">
@@ -84,7 +90,7 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
                 <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
                 <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
               </div>
-              <a href={this.state.currentProduct.link} target='_blank' className="btn btn-primary">Купить</a>
+              <a href={this.state.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Cronos</a>
             </div>
           </div>
         </div>
