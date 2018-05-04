@@ -15,6 +15,7 @@ body{
 .product-list{
   height: 647px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .product-item-title {
     font-weight: bold;
@@ -85,4 +86,8 @@ body{
     position: absolute;
     z-index: 1;
     margin: 0px -20px;
+}
+
+.subpreview{
+  cursor: pointer
 }

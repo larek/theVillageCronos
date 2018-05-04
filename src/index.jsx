@@ -67,10 +67,10 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
         <div className='col-2'>
           <div className='row'>
             <div className='col-12'>
-              {this.state.img3 ? <img className='img-fluid' onClick={this.setMainImage.bind(this)} src={this.state.img3} /> : false}
+              {this.state.img3 ? <img className='img-fluid subpreview' onClick={this.setMainImage.bind(this)} src={this.state.img3} /> : false}
             </div>
             <div className='col-12 mt-3'>
-              {this.state.img4 ? <img className='img-fluid' onClick={this.setMainImage.bind(this)} src={this.state.img4} /> : false}
+              {this.state.img4 ? <img className='img-fluid subpreview' onClick={this.setMainImage.bind(this)} src={this.state.img4} /> : false}
             </div>
             <div className='col-12 mt-3'>
               <div className='uploadBtn'>
