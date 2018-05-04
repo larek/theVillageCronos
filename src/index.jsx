@@ -101,7 +101,7 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
                 this.state.products.map(item => {
                   return (
                     <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)} className='col-md-12'>
-                      <div className="product-item">
+                      <div className={this.state.currentProduct.id == item.id ? 'product-item product-item-active' : 'product-item'}>
                         <div className="">
                           <div className='row'>
                             <div className='col-6'>

@@ -76,3 +76,13 @@ body{
 .uploadBtn:hover{
   background: #a5998d;
 }
+
+.product-item-active:before {
+    content: '';
+    background: #91887e;
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    margin: 0px -20px;
+}
