@@ -20,11 +20,15 @@ class ProductController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['product'],
                 'rules' => [
                     [
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['get-data'],
+                        'roles' => ['?'],
                     ]
                 ],
             ],
