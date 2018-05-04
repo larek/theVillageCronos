@@ -44,9 +44,14 @@ class ProductSearch extends Product
         $query = Product::find();
 
         // add conditions that should always apply here
+        $query->andWhere(['active' => 1]);
+        $query->orderBy(['ordernumber' => SORT_ASC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+              'pageSize' => 30
+            ]
         ]);
 
         $this->load($params);

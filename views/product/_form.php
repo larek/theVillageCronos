@@ -40,22 +40,10 @@ foreach($colorModel as $item){
 
     <?= $form->field($model, 'ordernumber')->textInput() ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-    
-    <?= $form->field($model, 'img1')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'img2')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'img3')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'img4')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'active')->checkbox() ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

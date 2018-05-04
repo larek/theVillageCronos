@@ -7,24 +7,18 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Products';
+$this->title = 'Товары';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
 
-            'ordernumber',
             [
               'attribute' => 'sku',
               'format' => 'raw',
@@ -39,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $data->brandDetail->title;
               }
             ],
+            'ordernumber',
             [
               'attribute' => 'color',
               'format' => 'raw',
@@ -48,15 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'price',
             'discount',
-            'active',
-            //'pricediscount',
-            //'ordernumber',
-            //'img1',
-            //'img2',
-            //'img3',
-            //'img4',
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

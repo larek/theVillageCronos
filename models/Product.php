@@ -67,17 +67,18 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'brand' => 'Brand',
-            'sku' => 'Sku',
-            'color' => 'Color',
-            'price' => 'Price',
-            'discount' => 'Discount',
-            'pricediscount' => 'Pricediscount',
-            'ordernumber' => 'Ordernumber',
+            'brand' => 'Бренд',
+            'sku' => 'Артикул',
+            'color' => 'Цвет',
+            'price' => 'Цена',
+            'discount' => 'Скидка',
+            'pricediscount' => 'Цена со скидкой',
+            'ordernumber' => 'Порядок',
             'img1' => 'Img1',
             'img2' => 'Img2',
             'img3' => 'Img3',
             'img4' => 'Img4',
+            'link' => 'Ссылка на товар в магазине'
         ];
     }
 }
