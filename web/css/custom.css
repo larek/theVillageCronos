@@ -1,0 +1,41 @@
+body{
+  background: #f1f1f1;
+  font-family: 'Open Sans';
+}
+#app{
+  margin: 10px auto;
+  padding: 0px 20px;
+  height:500px;
+  width: 1020px;
+}
+.product-item {
+    border-bottom: 1px solid #dfdfdf;
+    cursor: pointer;
+    padding: 0px 20px;
+}
+.product-list{
+  height: 680px;
+  overflow-y: scroll;
+}
+.product-item-title {
+    font-weight: bold;
+}
+.product-item-price {
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+.product-item-description{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mainProductView-description {
+    padding: 10px 15px;
+}
+
+.mainProductView-price {
+    font-size: 1.3em;
+    padding-bottom: 10px;
+}

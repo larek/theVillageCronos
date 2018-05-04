@@ -73,14 +73,14 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
             </div>
           </div>
         </div>
-        <div className="col-5 text-center">
+        <div className="col-5">
           <div className="card" id='mainProductView'>
             {this.state.mainImage ? <img className='card-img-top' src={this.state.mainImage} /> : false}
-            <div className="card-body">
-              <h3 className="card-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</h3>
-              <div className="product-item-price">
-                <div><s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></div>
-                <div>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</div>
+            <div className="mainProductView-description">
+              <h4 className="card-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</h4>
+              <div className='mainProductView-price'>
+                <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
+                <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
               </div>
               <a href="#" className="btn btn-primary">Купить</a>
             </div>
