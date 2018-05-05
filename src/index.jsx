@@ -1,5 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
+import Viewer from './viewer.jsx'; // eslint-disable-line no-unused-vars
 
 class App extends React.Component{ // eslint-disable-line no-unused-vars
   constructor(props){
@@ -81,18 +82,10 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
           </div>
         </div>
         <div className="col-5">
-          <div className="card" id='mainProductView'>
-            {this.state.mainImage ? <img className='card-img-top' src={this.state.mainImage} /> : false}
-            <div className="mainProductView-description">
-              <div className="mainProductView-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</div>
-              <div className='mainProductView-color'>{this.state.currentProduct.color}</div>
-              <div className='mainProductView-price'>
-                <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
-                <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
-              </div>
-              <a href={this.state.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Cronos</a>
-            </div>
-          </div>
+          <Viewer
+            mainImage={this.state.mainImage}
+            currentProduct={this.state.currentProduct}
+          />
         </div>
         <div className="col-5">
           <div className='card product-list'>
@@ -102,25 +95,23 @@ class App extends React.Component{ // eslint-disable-line no-unused-vars
                   return (
                     <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)} className='col-md-12'>
                       <div className={this.state.currentProduct.id == item.id ? 'product-item product-item-active' : 'product-item'}>
-                        <div className="">
-                          <div className='row'>
-                            <div className='col-6'>
-                              <img 
-                                src={item.img1}
-                                data-img1={item.img1}
-                                data-img2={item.img2}
-                                className='card-img-top img-fluid'
-                                onMouseEnter={this.setImg2.bind(this)}
-                                onMouseLeave={this.setImg1.bind(this)}
-                              />
-                            </div>
-                            <div className='col-6 product-item-description'>
-                              <div className="product-item-title">{item.brand}</div>
-                              <div className="product-item-title">{item.sku}</div>
-                              <div className="product-item-price">
-                                <div><s>{item.pricediscount == null ? null : item.price}</s></div>
-                                <div>{item.pricediscount == null ? item.price : item.pricediscount}</div>
-                              </div>
+                        <div className='row'>
+                          <div className='col-6'>
+                            <img 
+                              src={item.img1}
+                              data-img1={item.img1}
+                              data-img2={item.img2}
+                              className='card-img-top img-fluid'
+                              onMouseEnter={this.setImg2.bind(this)}
+                              onMouseLeave={this.setImg1.bind(this)}
+                            />
+                          </div>
+                          <div className='col-6 product-item-description'>
+                            <div className="product-item-title">{item.brand}</div>
+                            <div className="product-item-title">{item.sku}</div>
+                            <div className="product-item-price">
+                              <div><s>{item.pricediscount == null ? null : item.price}</s></div>
+                              <div>{item.pricediscount == null ? item.price : item.pricediscount}</div>
                             </div>
                           </div>
                         </div>
