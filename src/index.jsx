@@ -64,8 +64,7 @@ class App extends React.Component{
             />
             <div className='row'>
               <div className='col-12 mt-3'>
-                <input type='file' style={{display: 'none'}} ref={this.inputFile} onChange={this.fileHandle.bind(this)} />
-                <div className='uploadBtn' onClick={this.btnHandle.bind(this)}>
+                <div className='uploadBtn'>
                   <img src='/images/upload-btn.svg' />
                   <span>Загрузить фото</span>
                 </div>
