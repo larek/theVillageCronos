@@ -1,6 +1,7 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function(props){
+const Viewer = props => {
   return !props.currentProduct || !props.mainImage ? false : (<div className="card" id='mainProductView'>
     {props.mainImage ? <img className='card-img-top' src={props.mainImage} /> : false}
     <div className="mainProductView-description">
@@ -13,4 +14,11 @@ export default function(props){
       <a href={props.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Cronos</a>
     </div>
   </div>);
-}
+};
+
+Viewer.propTypes = {
+  currentProduct: PropTypes.object,
+  mainImage: PropTypes.string
+};
+
+export default Viewer;
