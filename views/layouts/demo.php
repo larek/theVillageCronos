@@ -11,6 +11,7 @@
 </head>
 <body>
   <div id="app"></div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.2.3/fabric.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js'></script>
   <script src='/js/bundle.js?v=1.0.5'></script> 
 </body>

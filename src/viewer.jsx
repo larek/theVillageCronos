@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const Viewer = props => {
   return !props.currentProduct || !props.mainImage ? false : (<div className="card" id='mainProductView'>
-    {props.mainImage ? <img className='card-img-top' src={props.mainImage} /> : false}
+    <div id='canvasContainer' style={{display: props.canvasMode ? 'block' : 'none'}}>
+    </div>
+    {props.mainImage && !props.canvasMode ? <img id='mainProductImage' className='card-img-top' src={props.mainImage} /> : false}
     <div className="mainProductView-description">
       <div className="mainProductView-title">{props.currentProduct.brand + ' ' + props.currentProduct.sku}</div>
       <div className='mainProductView-color'>{props.currentProduct.color}</div>
@@ -18,7 +20,8 @@ const Viewer = props => {
 
 Viewer.propTypes = {
   currentProduct: PropTypes.object,
-  mainImage: PropTypes.string
+  mainImage: PropTypes.string,
+  canvasMode: PropTypes.bool,
 };
 
 export default Viewer;
