@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link rel="stylesheet" href="/css/custom.css?v=1.0.4">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 </head>
 <body>
   <div id="app"></div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js'></script>
   <script src='/js/bundle.js?v=1.0.5'></script> 
 </body>
 </html>
