@@ -20,7 +20,7 @@ class App extends React.Component{
         top: 140,
         left: 50,
         angle: 0,
-        scale: 0.14,
+        scale: 0.8,
       }
     };
     this.inputFile = React.createRef();
