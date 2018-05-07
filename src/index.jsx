@@ -128,13 +128,6 @@ class App extends React.Component{
       scaleY: HEIGHT / 450,
     });
 
-    // set new object to canvas
-    this.setObjectToCanvas('http://localhost:8080/images/105-DEMI/5.png', r => {
-      _this.state.canvas.getObjects()[0].on('mouseup', e => {
-        console.log(e.target);
-      })
-    });
-
   }
 
   changeCanvasProduct(img){
