@@ -35,6 +35,7 @@ tests/_support/_generated
 /node_modules
 /web/images
 /web/temp-images
+/web/images-origin
 /config/db.php
 /config/params.php
 /web/js/bundle.js
