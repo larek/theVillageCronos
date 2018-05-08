@@ -49,6 +49,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+              '/' => 'site/empty',
+              'demo' => 'site/index'
             ],
         ],
         

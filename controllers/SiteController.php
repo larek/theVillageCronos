@@ -65,6 +65,14 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+
+    public function actionEmpty()
+    {
+      $this->layout = 'empty';
+      return $this->render('index');
+    }
+
+
     /**
      * Login action.
      *
