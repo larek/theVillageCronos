@@ -4,6 +4,7 @@ import Viewer from './viewer.jsx';
 import FaceList from './face-list.jsx';
 import ProductItem from './product-item.jsx';
 import {Croppie} from 'croppie';
+import SetSize from './setSize';
 
 class App extends React.Component{
   constructor(props){
@@ -28,6 +29,7 @@ class App extends React.Component{
 
   componentDidMount(){
     this.getData();
+    SetSize();
   }
 
   getData(){
@@ -175,8 +177,81 @@ class App extends React.Component{
     let display = {display: this.state.currentProduct ? 'block' : 'none'},
       cropContainer = {display: this.state.cropMode ? 'block' : 'none'},
       viewerContainer = {display: this.state.cropMode ? 'none' : false};
+    //let cropContainer = {display: 'none'}, viewerContainer = {display: 'none'}, display = {display: 'block'};
     return(
-      <div className='container' style={display}>
+      <div id='appContainer' style={display}>
+        <div id='viewer' className="viewer">
+          <Viewer
+            mainImage={this.state.mainImage}
+            currentProduct={this.state.currentProduct}
+            canvasMode={this.state.canvasMode}
+          />
+        </div>
+        <div id='list' className="list">
+          <div className='product-list'>
+            <div className='row'>
+              {
+                this.state.products.map(item => {
+                  return(
+                    <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)}>
+                      <ProductItem 
+                        item={item}
+                        setImg1={this.setImg1.bind(this)}
+                        setImg2={this.setImg2.bind(this)}
+                        activeItem={this.state.currentProduct.id} />
+                    </div>
+                  );
+                })
+              }
+            </div>
+          </div>
+        </div>
+        <div id="detail">
+          <div className="row">
+            <div className="col-md-6">
+              <div className='row'>
+                <div className='col-4'>
+                  {
+                    this.state.currentProduct.img3 ?
+                      <img 
+                        className='img-fluid subpreview' 
+                        onClick={this.setMainImage.bind(this)} 
+                        src={this.state.currentProduct.img3} /> : 
+                      false
+                  }
+                </div>
+                <div className='col-4 text-center'>
+                  {
+                    this.state.currentProduct.img4 ?
+                      <img 
+                        className='img-fluid subpreview' 
+                        onClick={this.setMainImage.bind(this)} 
+                        src={this.state.currentProduct.img4} /> : 
+                      false
+                  }
+                </div>
+                <div className='col-4 text-right'>
+                  {this.state.userImage !== '' ? <img className='img-fluid subpreview' onClick={this.canvasShow.bind(this)} src={this.state.userImage} /> : false}
+                  <input type='file' ref={this.inputFile} style={{display: 'none'}} onChange={this.fileHandle.bind(this)}/>
+                  <div  onClick={this.btnUploadHandle.bind(this)}>
+                    <img src='http://placehold.it/100x150' className='img-fluid' />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="mainProductView-description">
+                <div className="mainProductView-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</div>
+                <div className='mainProductView-color'>{this.state.currentProduct.color}</div>
+                <div className='mainProductView-price'>
+                  <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
+                  <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
+                </div>
+                <a href={this.state.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Cronos</a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='row' style={cropContainer}>
           <div className='col-12 text-center'>
             <div id="croppie"></div>
@@ -184,48 +259,6 @@ class App extends React.Component{
           </div>
         </div>
         <div className='row' style={viewerContainer}>
-          <div className='col-2'>
-            <FaceList 
-              currentProduct={this.state.currentProduct} 
-              setMainImage={this.setMainImage.bind(this)}
-            />
-            <div className='row'>
-              <div className='col-12 mt-3'>
-                {this.state.userImage !== '' ? <img className='img-fluid subpreview' onClick={this.canvasShow.bind(this)} src={this.state.userImage} /> : false}
-                <input type='file' ref={this.inputFile} style={{display: 'none'}} onChange={this.fileHandle.bind(this)}/>
-                <div className='uploadBtn' onClick={this.btnUploadHandle.bind(this)}>
-                  <img src='/images/upload-btn.svg' />
-                  <span>Загрузить фото</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-5">
-            <Viewer
-              mainImage={this.state.mainImage}
-              currentProduct={this.state.currentProduct}
-              canvasMode={this.state.canvasMode}
-            />
-          </div>
-          <div className="col-5">
-            <div className='card product-list'>
-              <div className='row'>
-                {
-                  this.state.products.map(item => {
-                    return(
-                      <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)}>
-                        <ProductItem 
-                          item={item}
-                          setImg1={this.setImg1.bind(this)}
-                          setImg2={this.setImg2.bind(this)}
-                          activeItem={this.state.currentProduct.id} />;
-                      </div>
-                    );
-                  })
-                }
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const FaceList = props => {
   return(
     <div className='row'>
-      <div className='col-12'>
+      <div className='col-4'>
         {
           props.currentProduct.img3 ?
             <img 
@@ -14,7 +14,7 @@ const FaceList = props => {
             false
         }
       </div>
-      <div className='col-12 mt-3'>
+      <div className='col-4'>
         {
           props.currentProduct.img4 ?
             <img 

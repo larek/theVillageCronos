@@ -5,24 +5,20 @@ body{
 #app{
   margin: 10px auto;
   padding: 0px 20px 20px 20px;
-  width: 900px;
 }
 .product-item {
     border-bottom: 1px solid #dfdfdf;
     cursor: pointer;
-    padding: 0px 20px;
+    padding: 5px 20px;
 }
 .product-list{
-  height: 647px;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 .product-item-title {
     font-weight: bold;
 }
 .product-item-price {
-    margin-top: 15px;
-    font-size: 1.2em;
+    margin-top: 5px;
+    font-size: 1em;
 }
 
 .product-item-description{
@@ -85,9 +81,25 @@ body{
     height: 100%;
     position: absolute;
     z-index: 1;
-    margin: 0px -20px;
+    margin: -5px -20px;
 }
 
 .subpreview{
   cursor: pointer
 }
+.viewer, .list, #detail{
+  background: #fff;
+  float: left;
+  border-bottom: 1px solid silver;
+}
+.viewer img{
+  width: 100%;
+}
+#viewer{
+  overflow: hidden;
+}
+#list{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
