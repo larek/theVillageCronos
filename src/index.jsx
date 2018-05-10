@@ -1,7 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 import Viewer from './viewer.jsx'; 
-import FaceList from './face-list.jsx';
 import ProductItem from './product-item.jsx';
 import {Croppie} from 'croppie';
 import SetSize from './setSize.jsx';
