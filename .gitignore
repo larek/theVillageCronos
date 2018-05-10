@@ -38,5 +38,5 @@ tests/_support/_generated
 /web/images-origin
 /config/db.php
 /config/params.php
-/web/js/bundle.js
-/web/js/bundle.map.js
+/web/js
+/web/js
