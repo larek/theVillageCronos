@@ -1,5 +1,5 @@
 export default () => {
-  let HEIGHT = window.innerHeight*0.7;
+  let HEIGHT = window.innerHeight*0.8;
   let CONTAINER = document.getElementById('appContainer').offsetWidth;
   let COEFFICIENT = 1.5;
   let blockWidth, blockHeight;
@@ -19,7 +19,6 @@ export default () => {
   document.getElementById('list').style.height = blockHeight + 'px';
 
   document.getElementById('detail').style.width = blockWidth*2 + 'px';
-  document.getElementById('detail').style.height = window.innerHeight*0.3 + 'px';
 
   document.getElementById('appContainer').style.width = blockWidth*2 + 'px';
   document.getElementById('appContainer').style.margin = '0px auto';

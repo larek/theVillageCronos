@@ -85,7 +85,8 @@ body{
 }
 
 .subpreview{
-  cursor: pointer
+  cursor: pointer;
+  border-radius: 50%;
 }
 .viewer, .list, #detail{
   background: #fff;
@@ -101,5 +102,9 @@ body{
 #list{
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+#detail {
+    padding: 10px 10px;
 }
 

@@ -135,6 +135,8 @@ class ProductController extends Controller
           'img2' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/2.jpg') ? '/images/'.$item->slug.'/2.jpg' : 'https://placehold.it/300x150',
           'img3' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3.jpg') ? '/images/'.$item->slug.'/3.jpg' : 'https://placehold.it/300x150',
           'img4' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/4.jpg') ? '/images/'.$item->slug.'/4.jpg' : 'https://placehold.it/300x150',
+          'img3Thumb' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3-100.jpg') ? '/images/'.$item->slug.'/3-100.jpg' : 'https://placehold.it/100x100',
+          'img4Thumb' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/4-100.jpg') ? '/images/'.$item->slug.'/4-100.jpg' : 'https://placehold.it/100x100',
           'img5' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/5.png') ? '/images/'.$item->slug.'/5.png' : 'https://placehold.it/300x150',
         ]);
       }

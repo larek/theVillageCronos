@@ -5,6 +5,7 @@ import FaceList from './face-list.jsx';
 import ProductItem from './product-item.jsx';
 import {Croppie} from 'croppie';
 import SetSize from './setSize';
+import CreateThumb from './thumb';
 
 class App extends React.Component{
   constructor(props){
@@ -46,7 +47,7 @@ class App extends React.Component{
 
   setMainImage(e){
     this.setState({
-      mainImage: e.target.getAttribute('src'),
+      mainImage: e.target.getAttribute('data-img'),
       canvasMode: false
     });
   }
@@ -99,16 +100,20 @@ class App extends React.Component{
       _this.state.cropper.destroy();
       _this.setState({
         mainImage: blob,
-        userImage: blob,
         cropper: {},
         cropMode: false
+      });
+      
+      CreateThumb(300, blob, r => {
+        _this.setState({
+          userImage: r
+        });
       });
       _this.canvas(blob);
     }); 
   }
 
   canvas(img){
-    let _this = this;
     let viewerContainer = document.getElementById('mainProductView');
     let WIDTH = viewerContainer.offsetWidth;
     let HEIGHT = WIDTH * 1.5;
@@ -119,6 +124,18 @@ class App extends React.Component{
     canvasEl.width = WIDTH;
     canvasEl.height = HEIGHT;
     document.getElementById('canvasContainer').append(canvasEl);
+
+    let btnUpload = document.getElementById('btnUpload'); 
+    let btnWidth = btnUpload.offsetWidth;
+    btnUpload.style.width = btnWidth + 'px';
+    btnUpload.style.height = btnWidth + 'px';
+    btnUpload.style.position = 'absolute';
+    btnUpload.style.marginTop = (btnWidth+20)*-1 + 'px';
+
+    console.table({
+      width: btnWidth
+    });
+    
 
     this.setState({
       canvas: new fabric.Canvas('c'),
@@ -136,21 +153,22 @@ class App extends React.Component{
     let _this = this;
 
     // remove object from Canvas
-    this.state.canvas.remove(this.state.canvas.getObjects()[0]);
-
-    // set new object to canvas
-    this.setObjectToCanvas(img, () => {
-      _this.state.canvas.getObjects()[0].on('mouseup', e => {
-        _this.setState({
-          objectParams: {
-            top: e.target.top,
-            left: e.target.left,
-            angle: e.target.angle,
-            scale: e.target.scaleX,
-          }
+    if(this.state.canvas){
+      this.state.canvas.remove(this.state.canvas.getObjects()[0]);
+      // set new object to canvas
+      this.setObjectToCanvas(img, () => {
+        _this.state.canvas.getObjects()[0].on('mouseup', e => {
+          _this.setState({
+            objectParams: {
+              top: e.target.top,
+              left: e.target.left,
+              angle: e.target.angle,
+              scale: e.target.scaleX,
+            }
+          });
         });
       });
-    });
+    }
   }
 
   setObjectToCanvas(img, callback){
@@ -177,77 +195,84 @@ class App extends React.Component{
     let display = {display: this.state.currentProduct ? 'block' : 'none'},
       cropContainer = {display: this.state.cropMode ? 'block' : 'none'},
       viewerContainer = {display: this.state.cropMode ? 'none' : false};
-    //let cropContainer = {display: 'none'}, viewerContainer = {display: 'none'}, display = {display: 'block'};
     return(
       <div id='appContainer' style={display}>
-        <div id='viewer' className="viewer">
-          <Viewer
-            mainImage={this.state.mainImage}
-            currentProduct={this.state.currentProduct}
-            canvasMode={this.state.canvasMode}
-          />
-        </div>
-        <div id='list' className="list">
-          <div className='product-list'>
-            <div className='row'>
-              {
-                this.state.products.map(item => {
-                  return(
-                    <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)}>
-                      <ProductItem 
-                        item={item}
-                        setImg1={this.setImg1.bind(this)}
-                        setImg2={this.setImg2.bind(this)}
-                        activeItem={this.state.currentProduct.id} />
-                    </div>
-                  );
-                })
-              }
+        <div style={viewerContainer}>
+          <div id='viewer' className="viewer">
+            <Viewer
+              mainImage={this.state.mainImage}
+              currentProduct={this.state.currentProduct}
+              canvasMode={this.state.canvasMode}
+            />
+          </div>
+          <div id='list' className="list">
+            <div className='product-list'>
+              <div className='row'>
+                {
+                  this.state.products.map(item => {
+                    return(
+                      <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)}>
+                        <ProductItem 
+                          item={item}
+                          setImg1={this.setImg1.bind(this)}
+                          setImg2={this.setImg2.bind(this)}
+                          activeItem={this.state.currentProduct.id} />
+                      </div>
+                    );
+                  })
+                }
+              </div>
             </div>
           </div>
-        </div>
-        <div id="detail">
-          <div className="row">
-            <div className="col-md-6">
-              <div className='row'>
-                <div className='col-4'>
-                  {
-                    this.state.currentProduct.img3 ?
-                      <img 
-                        className='img-fluid subpreview' 
-                        onClick={this.setMainImage.bind(this)} 
-                        src={this.state.currentProduct.img3} /> : 
-                      false
-                  }
-                </div>
-                <div className='col-4 text-center'>
-                  {
-                    this.state.currentProduct.img4 ?
-                      <img 
-                        className='img-fluid subpreview' 
-                        onClick={this.setMainImage.bind(this)} 
-                        src={this.state.currentProduct.img4} /> : 
-                      false
-                  }
-                </div>
-                <div className='col-4 text-right'>
-                  {this.state.userImage !== '' ? <img className='img-fluid subpreview' onClick={this.canvasShow.bind(this)} src={this.state.userImage} /> : false}
-                  <input type='file' ref={this.inputFile} style={{display: 'none'}} onChange={this.fileHandle.bind(this)}/>
-                  <div  onClick={this.btnUploadHandle.bind(this)}>
-                    <img src='http://placehold.it/100x150' className='img-fluid' />
+          <div id="detail">
+            <div className="row">
+              <div className="col-6">
+                <div className='row'>
+                  <div className='col-4'>
+                    {
+                      this.state.currentProduct.img3 ?
+                        <img 
+                          className='img-fluid subpreview' 
+                          onClick={this.setMainImage.bind(this)} 
+                          data-img={this.state.currentProduct.img3}
+                          src={this.state.currentProduct.img3Thumb} /> : 
+                        false
+                    }
+                  </div>
+                  <div className='col-4 text-center'>
+                    {
+                      this.state.currentProduct.img4 ?
+                        <img 
+                          className='img-fluid subpreview' 
+                          onClick={this.setMainImage.bind(this)} 
+                          data-img={this.state.currentProduct.img4}
+                          src={this.state.currentProduct.img4Thumb} /> : 
+                        false
+                    }
+                  </div>
+                  <div className='col-4 text-right'>
+                    <div onClick={this.btnUploadHandle.bind(this)} id='btnUpload'>
+                      <img src='/images/btnUpload.jpg' className='img-fluid subpreview' />
+                    </div>
+                    {
+                      this.state.userImage !== '' ? 
+                        <img className='img-fluid subpreview' onClick={this.canvasShow.bind(this)} src={this.state.userImage} />:
+                        false
+                    }
+                    <input type='file' ref={this.inputFile} style={{display: 'none'}} onChange={this.fileHandle.bind(this)}/>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div className="mainProductView-description">
-                <div className="mainProductView-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</div>
-                <div className='mainProductView-color'>{this.state.currentProduct.color}</div>
-                <div className='mainProductView-price'>
-                  <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
-                  <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
+              <div className="d-none d-md-block col-md-6">
+                <div className="mainProductView-description">
+                  <div className="mainProductView-title">{this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku}</div>
+                  <div className='mainProductView-color'>{this.state.currentProduct.color}</div>
+                  <div className='mainProductView-price'>
+                    <span>{this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
+                    <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
+                  </div>
+                  <a href={this.state.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Cronos</a>
                 </div>
-                <a href={this.state.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Cronos</a>
               </div>
             </div>
           </div>
