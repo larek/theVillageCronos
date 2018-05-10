@@ -18,14 +18,14 @@ body{
 }
 .product-item-price {
     margin-top: 5px;
-    font-size: 1em;
+    font-size: 100%;
 }
 
 .product-item-description{
 }
 
 .mainProductView-description {
-    padding: 10px 15px;
+    padding: 0px 15px;
 }
 
 .mainProductView-price {
@@ -105,3 +105,15 @@ body{
     padding: 10px 10px;
 }
 
+.redPrice {
+    color: #ff2d44;
+    font-weight: bold;
+}
+.discountLabel {
+    padding: 3px 5px;
+    background: #f92e44;
+    color: white;
+    border-radius: 4px;
+    margin: 0px;
+    font-size: 0.9em;
+}

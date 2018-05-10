@@ -22,10 +22,11 @@ const ProductItem = props => {
           />
         </div>
         <div className='col-12 col-md-8 product-item-description'>
-          <div className="product-item-title">{props.item.brand} {props.item.sku}</div>
-          <div className="product-item-price">
-            <div><s>{props.item.pricediscount == null ? null : props.item.price}</s></div>
-            <div>{props.item.pricediscount == null ? props.item.price : props.item.pricediscount}</div>
+          <div className="product-item-title text-right">{props.item.brand} {props.item.sku}</div>
+          <div className="product-item-price text-right pl-0">
+            { props.item.discount !== null ? <span className='discountLabel'>- {props.item.discount}%</span> : null }
+            <span className={props.item.pricediscount !== null ? 'redPrice' : false}> {props.item.pricediscount == null ? props.item.price : props.item.pricediscount}</span>
+            <span> <s>{props.item.pricediscount == null ? null : props.item.price}</s></span>
           </div>
         </div>
       </div>
