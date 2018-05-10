@@ -4,8 +4,8 @@ import Viewer from './viewer.jsx';
 import FaceList from './face-list.jsx';
 import ProductItem from './product-item.jsx';
 import {Croppie} from 'croppie';
-import SetSize from './setSize';
-import CreateThumb from './thumb';
+import SetSize from './setSize.jsx';
+import CreateThumb from './thumb.jsx';
 
 class App extends React.Component{
   constructor(props){
