@@ -34,15 +34,17 @@ class App extends React.Component{
   }
 
   getData(){
-    fetch('/product/get-data').then(r => {
-      return r.json();
-    }).then(r => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('get', '/product/get-data', true);
+    xhr.onload = response => {
+      let r = JSON.parse(response.currentTarget.response);
       this.setState({
         products: r,
         mainImage: r[0].img3,
         currentProduct: r[0]
       });
-    });
+    };
+    xhr.send();
   }
 
   setMainImage(e){
