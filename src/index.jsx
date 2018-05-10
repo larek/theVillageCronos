@@ -127,6 +127,15 @@ class App extends React.Component{
     canvasEl.height = HEIGHT;
     document.getElementById('canvasContainer').append(canvasEl);
 
+    this.setState({
+      objectParams: {
+        top: HEIGHT*0.2,
+        left: WIDTH*0.1,
+        angle: 0,
+        scale: WIDTH/400,
+      }
+    });
+
     let btnUpload = document.getElementById('btnUpload'); 
     let btnWidth = btnUpload.offsetWidth;
     btnUpload.style.width = btnWidth + 'px';
