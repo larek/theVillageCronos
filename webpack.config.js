@@ -3,6 +3,7 @@ module.exports = {
     output: {
         filename: './web/js/bundle.js'
     },
+    devtool: 'source-map',
     module: {
         loaders: [{
             test: /\.jsx$/,
