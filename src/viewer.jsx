@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Viewer = props => {
-  return !props.currentProduct || !props.mainImage ? false : (<div className="card" id='mainProductView'>
+  return !props.currentProduct || !props.mainImage ? false : (<div id='mainProductView'>
     <div id='canvasContainer' style={{display: props.canvasMode ? 'block' : 'none'}}>
     </div>
-    {props.mainImage && !props.canvasMode ? <img id='mainProductImage' className='card-img-top' src={props.mainImage} /> : false}
+    {props.mainImage && !props.canvasMode ? <img id='mainProductImage'src={props.mainImage} /> : false}
   </div>);
 };
 
