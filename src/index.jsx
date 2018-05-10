@@ -278,7 +278,7 @@ class App extends React.Component{
                   <div className='mainProductView-color'>{this.state.currentProduct.color}</div>
                   <div className='mainProductView-price'>
                     { this.state.currentProduct.discount !== null ? <span className='discountLabel'>- {this.state.currentProduct.discount}%</span> : null }
-                    <span className={this.state.currentProduct.pricediscount !== null ? 'redPrice' : false}> {this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
+                    <span className={this.state.currentProduct.pricediscount !== null ? 'redPrice' : null}> {this.state.currentProduct.pricediscount == null ? this.state.currentProduct.price : this.state.currentProduct.pricediscount}</span>
                     <span> <s>{this.state.currentProduct.pricediscount == null ? null : this.state.currentProduct.price}</s></span>
                   </div>
                   <a href={this.state.currentProduct.link} target='_blank' className="btn btn-dark">Купить в Оптике Cronos</a>
