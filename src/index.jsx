@@ -147,15 +147,14 @@ class App extends React.Component{
   }
 
   changeCanvasProduct(img){
-    let _this = this;
 
     // remove object from Canvas
     if(this.state.canvas){
       this.removeObjectFromCanvas(() => {
         // set new object to canvas
         this.setObjectToCanvas(img, () => {
-          _this.state.canvas.getObjects()[0].on('mouseup', e => {
-            _this.setState({
+          this.state.canvas.getObjects()[0].on('mouseup', e => {
+            this.setState({
               objectParams: {
                 top: e.target.top,
                 left: e.target.left,
@@ -175,14 +174,13 @@ class App extends React.Component{
   }
 
   setObjectToCanvas(img, callback){
-    let _this = this;
     fabric.Image.fromURL(img, r => {
-      _this.state.canvas.add(r.set({
-        left: _this.state.objectParams.left,
-        top: _this.state.objectParams.top,
-        angle: _this.state.objectParams.angle,
-        scaleX: _this.state.objectParams.scale,
-        scaleY: _this.state.objectParams.scale,
+      this.state.canvas.add(r.set({
+        left: this.state.objectParams.left,
+        top: this.state.objectParams.top,
+        angle: this.state.objectParams.angle,
+        scaleX: this.state.objectParams.scale,
+        scaleY: this.state.objectParams.scale,
       }));
       callback();
     });
