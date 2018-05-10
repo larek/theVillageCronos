@@ -6,6 +6,7 @@ import {Croppie} from 'croppie';
 import SetSize from './setSize.jsx';
 import CreateThumb from './thumb.jsx';
 
+
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -29,6 +30,11 @@ class App extends React.Component{
 
   componentDidMount(){
     this.getData();
+
+    window.onresize = () => {
+      SetSize();
+    };
+
     SetSize();
   }
 
