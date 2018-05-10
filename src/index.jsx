@@ -134,11 +134,6 @@ class App extends React.Component{
     btnUpload.style.position = 'absolute';
     btnUpload.style.marginTop = (btnWidth+20)*-1 + 'px';
 
-    console.table({
-      width: btnWidth
-    });
-    
-
     this.setState({
       canvas: new fabric.Canvas('c'),
       canvasMode: true,
@@ -156,21 +151,27 @@ class App extends React.Component{
 
     // remove object from Canvas
     if(this.state.canvas){
-      this.state.canvas.remove(this.state.canvas.getObjects()[0]);
-      // set new object to canvas
-      this.setObjectToCanvas(img, () => {
-        _this.state.canvas.getObjects()[0].on('mouseup', e => {
-          _this.setState({
-            objectParams: {
-              top: e.target.top,
-              left: e.target.left,
-              angle: e.target.angle,
-              scale: e.target.scaleX,
-            }
+      this.removeObjectFromCanvas(() => {
+        // set new object to canvas
+        this.setObjectToCanvas(img, () => {
+          _this.state.canvas.getObjects()[0].on('mouseup', e => {
+            _this.setState({
+              objectParams: {
+                top: e.target.top,
+                left: e.target.left,
+                angle: e.target.angle,
+                scale: e.target.scaleX,
+              }
+            });
           });
         });
       });
     }
+  }
+
+  removeObjectFromCanvas(callback){
+    this.state.canvas.remove(this.state.canvas.getObjects()[0]);
+    callback();
   }
 
   setObjectToCanvas(img, callback){

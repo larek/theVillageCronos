@@ -14,6 +14,7 @@ const ProductItem = props => {
             onMouseEnter={props.setImg2}
             onMouseLeave={props.setImg1}
           />
+          <img style={{display: 'none'}} src={props.item.img5} />
         </div>
         <div className='col-6 d-md-none product-item-description'>
           <img
