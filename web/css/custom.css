@@ -22,9 +22,6 @@ body{
 }
 
 .product-item-description{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
 }
 
 .mainProductView-description {

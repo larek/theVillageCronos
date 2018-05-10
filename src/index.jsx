@@ -213,13 +213,12 @@ class App extends React.Component{
                 {
                   this.state.products.map(item => {
                     return(
-                      <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)}>
-                        <ProductItem 
-                          item={item}
-                          setImg1={this.setImg1.bind(this)}
-                          setImg2={this.setImg2.bind(this)}
-                          activeItem={this.state.currentProduct.id} />
-                      </div>
+                      <ProductItem 
+                        key={item.id} onClick={this.setCurrentProduct.bind(this, item)}
+                        item={item}
+                        setImg1={this.setImg1.bind(this)}
+                        setImg2={this.setImg2.bind(this)}
+                        activeItem={this.state.currentProduct.id} />
                     );
                   })
                 }
