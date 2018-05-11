@@ -1,6 +1,9 @@
 @include media-breakpoint-down(xs) {
   .product-item-title, .product-item-color, .product-item-price {
-    font-size: 0.7em;
+    font-size: 0.7em!important;
+  }
+  .oldPrice {
+    display: inline-block;
   }
 }
 

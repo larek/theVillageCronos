@@ -13,7 +13,7 @@ gulp.task('css',() => {
     .pipe(gulp.dest('./web/css'));
 });
 
-gulp.watch('./src/index.scss', ['css']);
+gulp.watch('./src/*.scss', ['css']);
 
 
 gulp.task('thumbs', () => {
