@@ -84,18 +84,38 @@ class App extends React.Component{
     let reader = new FileReader();
     reader.onload = r => {
       this.inputFile.current.value = '';
+      
+      //get container width
+      let appWidth = document.getElementById('app').offsetWidth;
+      let windowHeight = window.innerHeight;
+      let croppieWidth, croppieHeight;
+      if(appWidth*1.7 > windowHeight){
+        croppieHeight = windowHeight*0.7;
+        croppieWidth = croppieHeight/1.7;
+      }else{
+        croppieHeight = appWidth*1.7;
+        croppieWidth = appWidth;
+      }
+
+      let croppieWidthViewport = croppieWidth-20;
+      let croppieHeightViewport = croppieWidthViewport*1.5;
+
       let cropper  = new Croppie(document.getElementById('croppie'), {
-        viewport: { width: 300, height: 450 },
-        boundary: { width: 350, height: 500 },
+        viewport: { width: croppieWidthViewport, height: croppieHeightViewport },
+        boundary: { width: croppieWidth, height: croppieHeight },
         showZoomer: true,
         enableExif: true,
       });
+
       cropper.bind({
         url: r.currentTarget.result,
       });
+
       this.setState({
         cropper: cropper,
-        cropMode: true
+        cropMode: true,
+        croppieWidthViewport: croppieWidthViewport,
+        croppieHeightViewport: croppieHeightViewport
       });
     };
     reader.readAsDataURL(this.inputFile.current.files[0]);
@@ -111,7 +131,7 @@ class App extends React.Component{
         cropMode: false
       });
       
-      CreateThumb(300, blob, r => {
+      CreateThumb(_this.state.croppieWidthViewport, blob, r => {
         _this.setState({
           userImage: r
         });
@@ -152,10 +172,14 @@ class App extends React.Component{
       canvas: new fabric.Canvas('c'),
       canvasMode: true,
     });
+
+    //set ScaleX Factor
+    let scaleX = WIDTH / this.state.croppieWidthViewport;
+    let scaleY = HEIGHT / this.state.croppieHeightViewport;
     
     this.state.canvas.setBackgroundImage(img, this.state.canvas.renderAll.bind(this.state.canvas), {
-      scaleX: WIDTH / 300,
-      scaleY: HEIGHT / 450,
+      scaleX: scaleX,
+      scaleY: scaleY,
     });
 
   }

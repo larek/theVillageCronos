@@ -1,7 +1,7 @@
 let createThumb = (size, img, callback) => {
   let canvas = document.createElement('canvas');
-  canvas.width = 300;
-  canvas.height = 300;
+  canvas.width = size;
+  canvas.height = size;
   let ctx = canvas.getContext('2d');
   let image = new Image();
   image.src = img;
