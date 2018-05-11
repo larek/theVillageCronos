@@ -234,6 +234,7 @@ class App extends React.Component{
     let url = document.getElementById('c').toDataURL();
     let link = document.createElement('a');
     link.href = url;
+    link.setAttribute('target', '_blank');
     link.download = this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku;
     link.click();
   }
