@@ -1,0 +1,11 @@
+@include media-breakpoint-down(xs) {
+  .product-item-title, .product-item-color, .product-item-price {
+    font-size: 0.7em;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .product-item-color {
+    font-size: 0.9em;
+  }
+}

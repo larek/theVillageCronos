@@ -1,8 +1,20 @@
 const gulp = require('gulp');
+const sass = require('gulp-sass');
+const rename = require('gulp-rename');
 const fs = require('fs');
 const path = require('path');
 const gm = require('gm');
 const dir = './web/images';
+
+gulp.task('css',() => {
+  return gulp.src('./src/index.scss')
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(rename('bundle.css'))
+    .pipe(gulp.dest('./web/css'));
+});
+
+gulp.watch('./src/index.scss', ['css']);
+
 
 gulp.task('thumbs', () => {
   fs.readdir(dir, (err, list) =>{
