@@ -310,7 +310,7 @@ class App extends React.Component{
             <div className="row">
               <div className="col-6">
                 <div className='row'>
-                  <div className='col-4'>
+                  <div className='col-4 btnContainer'>
                     {
                       this.state.currentProduct.img3 ?
                         <img 
@@ -321,7 +321,7 @@ class App extends React.Component{
                         false
                     }
                   </div>
-                  <div className='col-4 text-center'>
+                  <div className='col-4 btnContainer'>
                     {
                       this.state.currentProduct.img4 ?
                         <img 
@@ -332,7 +332,7 @@ class App extends React.Component{
                         false
                     }
                   </div>
-                  <div className='col-4 text-right'>
+                  <div className='col-4 btnContainer'>
                     <div onClick={this.btnUploadHandle.bind(this)} id='btnUpload'>
                       <img src='/images/btnUpload.jpg' className='img-fluid subpreview' />
                     </div>
@@ -347,10 +347,10 @@ class App extends React.Component{
               </div>
               <div className="col-6">
                 <div className='row'>
-                  <div className='col-4'>
+                  <div className='col-4 btnContainer'>
                     <img src='/images/btnWebcam.jpg' className='img-fluid subpreview' onClick={this.webcam.bind(this)} />
                   </div>
-                  <div className='col-4'>
+                  <div className='col-4 btnContainer'>
                     {this.state.canvas ? <img src='/images/btnDownload.jpg' className='img-fluid subpreview' onClick={this.downloadResult.bind(this)} /> : null }
                   </div>
                 </div>

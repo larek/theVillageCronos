@@ -5,10 +5,16 @@
   .oldPrice {
     display: inline-block;
   }
+  .btnContainer{
+    padding: 0px 10px!important;
+  }
 }
 
 @include media-breakpoint-down(md) {
   .product-item-color {
     font-size: 0.9em;
+  }
+  .btnContainer{
+    padding: 0px 15px;
   }
 }
