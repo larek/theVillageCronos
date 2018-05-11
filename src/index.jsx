@@ -18,6 +18,7 @@ class App extends React.Component{
       cropper: {},
       cropMode: false,
       canvasMode: false,
+      webcamMode: false,
       objectParams: {
         top: 140,
         left: 50,
@@ -85,40 +86,45 @@ class App extends React.Component{
     reader.onload = r => {
       this.inputFile.current.value = '';
       
-      //get container width
-      let appWidth = document.getElementById('app').offsetWidth;
-      let windowHeight = window.innerHeight;
-      let croppieWidth, croppieHeight;
-      if(appWidth*1.7 > windowHeight){
-        croppieHeight = windowHeight*0.7;
-        croppieWidth = croppieHeight/1.7;
-      }else{
-        croppieHeight = appWidth*1.7;
-        croppieWidth = appWidth;
-      }
-
-      let croppieWidthViewport = croppieWidth-20;
-      let croppieHeightViewport = croppieWidthViewport*1.5;
-
-      let cropper  = new Croppie(document.getElementById('croppie'), {
-        viewport: { width: croppieWidthViewport, height: croppieHeightViewport },
-        boundary: { width: croppieWidth, height: croppieHeight },
-        showZoomer: true,
-        enableExif: true,
-      });
-
-      cropper.bind({
-        url: r.currentTarget.result,
-      });
-
-      this.setState({
-        cropper: cropper,
-        cropMode: true,
-        croppieWidthViewport: croppieWidthViewport,
-        croppieHeightViewport: croppieHeightViewport
-      });
+      this.setCrop(r.currentTarget.result);
     };
     reader.readAsDataURL(this.inputFile.current.files[0]);
+  }
+
+  setCrop(img){
+    //get container width
+    let appWidth = document.getElementById('app').offsetWidth;
+    let windowHeight = window.innerHeight;
+    let croppieWidth, croppieHeight;
+    if(appWidth*1.7 > windowHeight){
+      croppieHeight = windowHeight*0.7;
+      croppieWidth = croppieHeight/1.7;
+    }else{
+      croppieHeight = appWidth*1.7;
+      croppieWidth = appWidth;
+    }
+
+    let croppieWidthViewport = croppieWidth-20;
+    let croppieHeightViewport = croppieWidthViewport*1.5;
+
+    let cropper  = new Croppie(document.getElementById('croppie'), {
+      viewport: { width: croppieWidthViewport, height: croppieHeightViewport },
+      boundary: { width: croppieWidth, height: croppieHeight },
+      showZoomer: true,
+      enableExif: true,
+    });
+
+    cropper.bind({
+      url: img,
+    });
+
+    this.setState({
+      cropper: cropper,
+      cropMode: true,
+      croppieWidthViewport: croppieWidthViewport,
+      croppieHeightViewport: croppieHeightViewport
+    });
+    
   }
 
   getCrop(){
@@ -239,12 +245,40 @@ class App extends React.Component{
     link.click();
   }
 
+  webcam(){
+    Webcam.set({
+      width: 500,
+      height: 375,
+      image_format: 'jpeg',
+      jpeg_quality: 100
+    });
+
+    Webcam.attach( '#my_camera' );
+
+    this.setState({
+      webcamMode: true
+    });
+  }
+
+  takeSnapshot(){
+    Webcam.snap(dataUrl => {
+      this.setCrop(dataUrl);
+      this.setState({
+        webcamMode: false
+      });
+    });
+  }
+
   render(){
     let display = {display: this.state.currentProduct ? 'block' : 'none'},
       cropContainer = {display: this.state.cropMode ? 'block' : 'none'},
-      viewerContainer = {display: this.state.cropMode ? 'none' : false};
+      viewerContainer = {display: this.state.cropMode || this.state.webcamMode ? 'none' : false};
     return(
       <div id='appContainer' style={display}>
+        <div id="cameraContainer" style={{display: this.state.webcamMode ? 'block' : 'none'}}>
+          <div id='my_camera'></div>
+          <button className='btn btn-dark' onClick={this.takeSnapshot.bind(this)}>Продолжить</button>
+        </div>
         <div style={viewerContainer}>
           <div id='viewer' className="viewer">
             <Viewer
@@ -313,6 +347,9 @@ class App extends React.Component{
               </div>
               <div className="col-6">
                 <div className='row'>
+                  <div className='col-4'>
+                    <img src='/images/btnWebcam.jpg' className='img-fluid subpreview' onClick={this.webcam.bind(this)} />
+                  </div>
                   <div className='col-4'>
                     {this.state.canvas ? <img src='/images/btnDownload.jpg' className='img-fluid subpreview' onClick={this.downloadResult.bind(this)} /> : null }
                   </div>
