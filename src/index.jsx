@@ -246,43 +246,29 @@ class App extends React.Component{
   }
 
   webcam(){
-    let _this = this;
+    let appWidth = document.getElementById('app').offsetWidth;
+    let webcamWidth, webcamHeight;
 
-    navigator.getMedia = ( navigator.getUserMedia || // use the proper vendor prefix
-     navigator.webkitGetUserMedia ||
-     navigator.mozGetUserMedia ||
-     navigator.msGetUserMedia);
+    if(window.innerWidth < 500){
+      webcamWidth = appWidth;
+      webcamHeight = appWidth/1.333333;
+    }else{
+      webcamWidth = 500;
+      webcamHeight = 375;
+    }
+    
+    // webcam is available
+    let webcam = Webcam.set({
+      width: webcamWidth,
+      height: webcamHeight,
+      image_format: 'jpeg',
+      jpeg_quality: 100
+    });
 
-    navigator.getMedia({video: true}, function(r) {
-
-      let appWidth = document.getElementById('app').offsetWidth;
-      let webcamWidth, webcamHeight;
-
-      if(window.innerWidth < 500){
-        webcamWidth = appWidth;
-        webcamHeight = appWidth/1.333333;
-      }else{
-        webcamWidth = 500;
-        webcamHeight = 375;
-      }
-      
-      // webcam is available
-      let webcam = Webcam.set({
-        width: webcamWidth,
-        height: webcamHeight,
-        image_format: 'jpeg',
-        jpeg_quality: 100
-      });
-
-      Webcam.attach( '#my_camera' );
-      
-      _this.setState({
-        webcamMode: true
-      });
-
-    }, function() {
-      // webcam is not available
-      alert('К сожалению, приложение не поддерживает работу камеры в этом браузере');
+    Webcam.attach( '#my_camera' );
+    
+    this.setState({
+      webcamMode: true
     });
 
   }
