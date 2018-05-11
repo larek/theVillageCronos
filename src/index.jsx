@@ -230,6 +230,14 @@ class App extends React.Component{
     });
   }
 
+  downloadResult(){
+    let url = document.getElementById('c').toDataURL();
+    let link = document.createElement('a');
+    link.href = url;
+    link.download = this.state.currentProduct.brand + ' ' + this.state.currentProduct.sku;
+    link.click();
+  }
+
   render(){
     let display = {display: this.state.currentProduct ? 'block' : 'none'},
       cropContainer = {display: this.state.cropMode ? 'block' : 'none'},
@@ -302,7 +310,13 @@ class App extends React.Component{
                   </div>
                 </div>
               </div>
-              <div className="d-none d-md-block col-md-6"></div>
+              <div className="col-6">
+                <div className='row'>
+                  <div className='col-4'>
+                    {this.state.canvas ? <img src='/images/btnDownload.jpg' className='img-fluid subpreview' onClick={this.downloadResult.bind(this)} /> : null }
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
