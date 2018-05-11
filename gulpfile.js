@@ -13,8 +13,6 @@ gulp.task('css',() => {
     .pipe(gulp.dest('./web/css'));
 });
 
-gulp.watch('./src/*.scss', ['css']);
-
 
 gulp.task('thumbs', () => {
   fs.readdir(dir, (err, list) =>{
@@ -52,7 +50,7 @@ gulp.task('png2jpg', () => {
             if(i == '3.png' || i == '4.png'){
               let basename = path.basename(dir + '/' + item + '/' + i, '.png');
               gm(dir + '/' + item + '/' + i)
-                .resize(300)
+                .resize(400)
                 .write(dir + '/' + item + '/' + basename +'.jpg', err => {
                   err ? console.log(err) : false; // eslint-disable-line no-console
                 });

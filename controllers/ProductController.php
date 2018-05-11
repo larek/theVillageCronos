@@ -119,6 +119,7 @@ class ProductController extends Controller
      * Get all product. Return JSON
      **/
     public function actionGetData(){ 
+      $fileVersion = '1.0.2';
       $model = Product::find()->where(['active' => 1])->orderBy(['ordernumber' => SORT_ASC])->all();
       $data = [];
       foreach($model as $item){
@@ -131,13 +132,13 @@ class ProductController extends Controller
           'pricediscount' => $item->pricediscount == null ? null : number_format($item->pricediscount, 0, ',', ' '). ' руб',
           'discount' => $item->discount,
           'link' => $item->link,
-          'img1' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/1.jpg') ? '/images/'.$item->slug.'/1.jpg' : 'https://placehold.it/300x150',
-          'img2' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/2.jpg') ? '/images/'.$item->slug.'/2.jpg' : 'https://placehold.it/300x150',
-          'img3' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3.jpg') ? '/images/'.$item->slug.'/3.jpg' : 'https://placehold.it/300x150',
-          'img4' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/4.jpg') ? '/images/'.$item->slug.'/4.jpg' : 'https://placehold.it/300x150',
-          'img3Thumb' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3-100.jpg') ? '/images/'.$item->slug.'/3-100.jpg' : 'https://placehold.it/100x100',
-          'img4Thumb' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/4-100.jpg') ? '/images/'.$item->slug.'/4-100.jpg' : 'https://placehold.it/100x100',
-          'img5' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/5.png') ? '/images/'.$item->slug.'/5.png' : 'https://placehold.it/300x150',
+          'img1' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/1.jpg') ? '/images/'.$item->slug.'/1.jpg?v='.$fileVersion : 'https://placehold.it/300x150',
+          'img2' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/2.jpg') ? '/images/'.$item->slug.'/2.jpg?v='.$fileVersion : 'https://placehold.it/300x150',
+          'img3' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3.jpg') ? '/images/'.$item->slug.'/3.jpg?v='.$fileVersion : 'https://placehold.it/300x150',
+          'img4' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/4.jpg') ? '/images/'.$item->slug.'/4.jpg?v='.$fileVersion : 'https://placehold.it/300x150',
+          'img3Thumb' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/3-100.jpg') ? '/images/'.$item->slug.'/3-100.jpg?v='.$fileVersion : 'https://placehold.it/100x100',
+          'img4Thumb' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/4-100.jpg') ? '/images/'.$item->slug.'/4-100.jpg?v='.$fileVersion : 'https://placehold.it/100x100',
+          'img5' => $item->slug !== '' && file_exists($_SERVER['DOCUMENT_ROOT'].'/images/'.$item->slug.'/5.png') ? '/images/'.$item->slug.'/5.png?v='.$fileVersion : 'https://placehold.it/300x150',
         ]);
       }
 
