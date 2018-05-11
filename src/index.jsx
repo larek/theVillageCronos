@@ -360,7 +360,7 @@ class App extends React.Component{
               </div>
               <div className="col-6">
                 <div className='row'>
-                  <div className='col-4 btnContainer'>
+                  <div className='col-4 btnContainer d-none'>
                     <img src='/images/btnWebcam.jpg' className='img-fluid subpreview' onClick={this.webcam.bind(this)} />
                   </div>
                   <div className='col-4 btnContainer'>
