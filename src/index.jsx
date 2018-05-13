@@ -32,10 +32,6 @@ class App extends React.Component{
   componentDidMount(){
     this.getData();
 
-    window.onresize = () => {
-      SetSize();
-    };
-
     SetSize();
   }
 
@@ -129,24 +125,28 @@ class App extends React.Component{
 
   getCrop(){
     let _this = this;
-    this.state.cropper.result('base64').then(function(blob) {
+    this.state.cropper.result({type: 'rawcanvas', size: 'original'}).then(function(canvas) {
+      let userImageWidth = canvas.width;
+      let userImageHeight = canvas.height;
+      let userImage = canvas.toDataURL();
+      
       _this.state.cropper.destroy();
       _this.setState({
-        mainImage: blob,
         cropper: {},
         cropMode: false
       });
       
-      CreateThumb(_this.state.croppieWidthViewport, blob, r => {
+      CreateThumb(_this.state.croppieWidthViewport, userImage, r => {
         _this.setState({
           userImage: r
         });
       });
-      _this.canvas(blob);
+      
+      _this.canvas(userImage, userImageWidth, userImageHeight);
     }); 
   }
 
-  canvas(img){
+  canvas(img, userImageWidth, userImageHeight){
     let viewerContainer = document.getElementById('mainProductView');
     let WIDTH = viewerContainer.offsetWidth;
     let HEIGHT = WIDTH * 1.5;
@@ -180,8 +180,8 @@ class App extends React.Component{
     });
 
     //set ScaleX Factor
-    let scaleX = WIDTH / this.state.croppieWidthViewport;
-    let scaleY = HEIGHT / this.state.croppieHeightViewport;
+    let scaleX = WIDTH / userImageWidth;
+    let scaleY = HEIGHT / userImageHeight;
     
     this.state.canvas.setBackgroundImage(img, this.state.canvas.renderAll.bind(this.state.canvas), {
       scaleX: scaleX,
