@@ -33,6 +33,10 @@ class App extends React.Component{
     this.getData();
 
     SetSize();
+
+    let itemList = document.getElementsByClassName('itemContainer');
+    var arr = Array.prototype.slice.call(itemList);
+    console.log(arr);
   }
 
   getData(){
@@ -164,7 +168,7 @@ class App extends React.Component{
     canvasEl.setAttribute('id', 'c');
     canvasEl.width = WIDTH;
     canvasEl.height = HEIGHT;
-    document.getElementById('canvasContainer').append(canvasEl);
+    document.getElementById('canvasContainer').appendChild(canvasEl);
 
     this.setState({
       objectParams: {
@@ -314,7 +318,7 @@ class App extends React.Component{
                 {
                   this.state.products.map(item => {
                     return(
-                      <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)} className='col-md-12'>
+                      <div key={item.id} onClick={this.setCurrentProduct.bind(this, item)} className='col-md-12 itemContainer'>
                         <ProductItem 
                           item={item}
                           setImg1={this.setImg1.bind(this)}
