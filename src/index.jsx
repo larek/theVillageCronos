@@ -31,12 +31,7 @@ class App extends React.Component{
 
   componentDidMount(){
     this.getData();
-
     SetSize();
-
-    let itemList = document.getElementsByClassName('itemContainer');
-    var arr = Array.prototype.slice.call(itemList);
-    console.log(arr);
   }
 
   getData(){
