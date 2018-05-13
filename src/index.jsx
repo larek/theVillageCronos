@@ -347,7 +347,7 @@ class App extends React.Component{
                   </div>
                   <div className='col-4 btnContainer'>
                     <div onClick={this.btnUploadHandle.bind(this)} id='btnUpload'>
-                      <img src='/images/btnUpload.jpg' className='img-fluid subpreview' />
+                      <img src='/images/btnUpload-2.svg' className='img-fluid subpreview' />
                     </div>
                     {
                       this.state.userImage !== '' ? 
@@ -364,7 +364,7 @@ class App extends React.Component{
                     <img src='/images/btnWebcam.jpg' className='img-fluid subpreview' onClick={this.webcam.bind(this)} />
                   </div>
                   <div className='col-4 btnContainer'>
-                    {this.state.canvas ? <img src='/images/btnDownload.jpg' className='img-fluid subpreview' onClick={this.downloadResult.bind(this)} /> : null }
+                    {this.state.canvas ? <img src='/images/btnDownload-2.svg' className='img-fluid subpreview' onClick={this.downloadResult.bind(this)} /> : null }
                   </div>
                 </div>
               </div>
