@@ -136,7 +136,7 @@ class App extends React.Component{
         cropMode: false
       });
       
-      CreateThumb(_this.state.croppieWidthViewport, userImage, r => {
+      CreateThumb(userImageWidth, userImage, r => {
         _this.setState({
           userImage: r
         });
