@@ -36,7 +36,7 @@ const ProductItem = props => {
             <span className={props.item.pricediscount !== null ? 'redPrice' : null}> {props.item.pricediscount == null ? props.item.price : props.item.pricediscount}</span>
             <span className='oldPrice'> <s>{props.item.pricediscount == null ? null : props.item.price}</s></span>
           </div>
-          <div className='row'>
+          <div className='row btnSmContainer'>
             <div className='col-8 pr-1'>
               <span className={props.item.id == props.activeItem ? 'btn btn-secondary btn-sm d-block d-sm-none active' : 'btn btn-secondary btn-sm d-block d-sm-none'} >Примерить</span>
             </div>
