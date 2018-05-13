@@ -36,8 +36,15 @@ const ProductItem = props => {
             <span className={props.item.pricediscount !== null ? 'redPrice' : null}> {props.item.pricediscount == null ? props.item.price : props.item.pricediscount}</span>
             <span className='oldPrice'> <s>{props.item.pricediscount == null ? null : props.item.price}</s></span>
           </div>
+          <div className='row'>
+            <div className='col-8 pr-1'>
+              <span className={props.item.id == props.activeItem ? 'btn btn-secondary btn-sm d-block d-sm-none active' : 'btn btn-secondary btn-sm d-block d-sm-none'} >Примерить</span>
+            </div>
+            <div className='col-4 pl-1'>
+              <a className='btn btn-secondary btn-sm d-block d-sm-none'  target='_blank' href={props.item.link}><i className="fa fa-shopping-cart"></i></a>
+            </div>
+          </div>
           <a className='btn btn-secondary btn-sm d-none d-sm-block'  target='_blank' href={props.item.link}>Купить в Оптике Кронос</a>
-          <a className='btn btn-secondary btn-sm d-block d-sm-none'  target='_blank' href={props.item.link}>Купить</a>
         </div>
       </div>
     </div>

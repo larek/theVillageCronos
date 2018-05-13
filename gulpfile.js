@@ -31,6 +31,17 @@ gulp.task('thumbs', () => {
                   err ? console.log(err) : false; // eslint-disable-line no-console
                 });
             }
+            // crop and resize faces
+            if(i == '1.jpg' || i == '2.jpg'){
+              let basename = path.basename(dir + '/' + item + '/' + i, '.jpg');
+              gm(dir + '/' + item + '/' + i)
+                .resize(300)
+                .crop(300, 180, 0, 50)
+                .gravity('Center')
+                .write(dir + '/' + item + '/' + basename +'-thumb.jpg', err => {
+                  err ? console.log(err) : false; // eslint-disable-line no-console
+                });
+            }
           });
         });
       }
