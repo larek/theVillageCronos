@@ -146,6 +146,14 @@ class App extends React.Component{
     }); 
   }
 
+  removeCrop(){
+    this.state.cropper.destroy();
+    this.setState({
+      cropper: {},
+      cropMode: false
+    });
+  }
+
   canvas(img, userImageWidth, userImageHeight){
     let viewerContainer = document.getElementById('mainProductView');
     let WIDTH = viewerContainer.offsetWidth;
@@ -284,7 +292,7 @@ class App extends React.Component{
 
   render(){
     let display = {display: this.state.currentProduct ? 'block' : 'none'},
-      cropContainer = {display: this.state.cropMode ? 'block' : 'none'},
+      cropContainer = {display: this.state.cropMode ? '' : 'none'},
       viewerContainer = {display: this.state.cropMode || this.state.webcamMode ? 'none' : false};
     return(
       <div id='appContainer' style={display}>
@@ -374,10 +382,13 @@ class App extends React.Component{
         <div className='row' style={cropContainer}>
           <div className='col-12 text-center'>
             <div id="croppie"></div>
-            <button className='btn btn-dark' onClick={this.getCrop.bind(this)} >Обрезать</button>
           </div>
-        </div>
-        <div className='row' style={viewerContainer}>
+          <div className='col-6 text-center'>
+            <button className='btn btn-secondary' onClick={this.getCrop.bind(this)} >Обрезать</button>
+          </div>
+          <div className='col-6 text-center'>
+            <button className='btn btn-light' onClick={this.removeCrop.bind(this)} >Отменить</button>
+          </div>
         </div>
       </div>
     );
