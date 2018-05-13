@@ -1,5 +1,5 @@
 export default () => {
-  let HEIGHT = window.innerHeight*0.8;
+  let HEIGHT = window.innerHeight*0.83;
   let CONTAINER = document.getElementById('app').offsetWidth;
   let COEFFICIENT = 1.5;
   let blockWidth, blockHeight;
