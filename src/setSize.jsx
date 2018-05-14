@@ -22,4 +22,5 @@ export default () => {
 
   document.getElementById('appContainer').style.width = blockWidth*2 + 'px';
   document.getElementById('appContainer').style.margin = '0px auto';
+  document.getElementById('appContainer').style.overflowX = 'hidden';
 };

@@ -14,6 +14,6 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.2.3/fabric.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js'></script>
   <script src='https://pixlcore.com/demos/webcamjs/webcam.min.js'></script>
-  <script src='/js/bundle.js?v=1.1.0'></script> 
+  <script src='/js/bundle.js?v=1.1.1'></script> 
 </body>
 </html>
