@@ -361,7 +361,7 @@ class App extends React.Component{
                         <img className='img-fluid subpreview' onClick={this.canvasShow.bind(this)} src={this.state.userImage} />:
                         false
                     }
-                    <input type='file' ref={this.inputFile} style={{display: 'none'}} onChange={this.fileHandle.bind(this)}/>
+                    <input type='file' ref={this.inputFile} style={{display: 'none'}} onChange={this.fileHandle.bind(this)} accept="image/*"/>
                   </div>
                 </div>
               </div>
