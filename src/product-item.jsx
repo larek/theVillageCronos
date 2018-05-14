@@ -44,7 +44,14 @@ const ProductItem = props => {
               <a className='btn btn-secondary btn-sm d-block d-sm-none'  target='_blank' href={props.item.link}><i className="fa fa-shopping-cart"></i></a>
             </div>
           </div>
-          <a className='btn btn-secondary btn-sm d-none d-sm-block'  target='_blank' href={props.item.link}>Купить в Оптике Кронос</a>
+          <div className='row'>
+            <div className='col-6 pr-1'>
+              <span className={props.item.id == props.activeItem ? 'btn btn-secondary btn-sm d-none d-sm-block active' : 'btn btn-secondary btn-sm d-none d-sm-block'} >Примерить</span>
+            </div>
+            <div className='col-6 pl-1'>
+              <a className='btn btn-secondary btn-sm d-none d-sm-block'  target='_blank' href={props.item.link}>Купить</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
