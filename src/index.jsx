@@ -368,8 +368,15 @@ class App extends React.Component{
               {
                 this.state.canvas ? '' : 
                   <div className='col-6 btnHelper'>
-                    <div>Загрузить</div>
-                    <div>свое фото</div>
+                    <div className='row'>
+                      <div className='col-3 btnHelper pr-1'>
+                        <img src='/images/btnUploadHelper.svg' className='img-fluid' />
+                      </div>
+                      <div className='col-9 btnHelper pl-1'>
+                        <div>Загрузить</div>
+                        <div>свое фото</div>
+                      </div>
+                    </div>
                   </div>
               }
               <div className="col-6">
