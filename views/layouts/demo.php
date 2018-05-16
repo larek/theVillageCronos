@@ -16,14 +16,5 @@
   <script src='https://pixlcore.com/demos/webcamjs/webcam.min.js'></script>
   <script src='/js/bundle.js?v=1.1.4'></script> 
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36439989-6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-36439989-6');
-  </script>
 </body>
 </html>
